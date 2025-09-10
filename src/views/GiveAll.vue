@@ -121,9 +121,9 @@ export default {
         if (res.data.code === 0) {
           this.$message.success('物品授予成功！请老师检查游戏邮箱')
         } else {
-          this.$message.error('操作失败：' + (res.data.message || '请查看响应获取具体错误'))
+          this.$message.error('操作失败' + (res.data.message ? `: ${res.data.message}` : ''))
         }
-        this.response = res.data.msg
+        this.response = res.data.message
       } catch (error) {
         const errorMsg = error.response?.data?.message || error.message
         this.$message.error('操作失败：' + errorMsg)

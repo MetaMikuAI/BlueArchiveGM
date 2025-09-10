@@ -114,7 +114,7 @@ export default {
         if (res.data.code === 0) {
           this.$message.success('操作成功')
         } else {
-          this.$message.error('操作失败')
+          this.$message.error('操作失败' + (res.data.message ? `：${res.data.message}` : ''))
         }
         this.response = res.data.data
       } catch (err) {

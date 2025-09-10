@@ -264,7 +264,7 @@ export default {
           } else {
             this.$message.error('发送失败')
           }
-          this.response = res.data.msg
+          this.response = res.data.message
         } catch (err) {
           const msg = err.response?.data?.message || err.message
           this.$message.error(msg)

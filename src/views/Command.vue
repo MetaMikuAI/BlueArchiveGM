@@ -81,7 +81,7 @@
           <div class="message-box">
             <p class="message-text2">老师！这是您的操作结果：</p>
             <p class="message-text">请求URL：</p>
-            <p class="url-text">{{ requestUrl }}</p>
+            <p class="code">{{ requestUrl }}</p>
             <p class="message-text">操作结果：</p>
             <p class="code">{{ response }}</p>
           </div>
@@ -149,8 +149,8 @@ export default {
           }
           
           const res = await axios.get(`${baseURL}${this.form.apiPath}`, config)
-          
-          if (res.data.code === 0) {
+
+          if (res.status == 200) {
             this.$message.success('请求成功，请老师查收~')
           } else {
             this.$message.warning('请求完成，但返回了错误码')

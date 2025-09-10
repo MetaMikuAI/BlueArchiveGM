@@ -14,6 +14,7 @@
           <el-option label="设置玩家通知" value="Toast"></el-option>
           <el-option label="获取服务器配置" value="GetConfig"></el-option>
           <el-option label="一键通关走格子" value="Campaign"></el-option>
+          <el-option label="接收邮件" value="ReceiveMail"></el-option>
         </el-select>
       </el-form-item>
 
@@ -34,22 +35,6 @@
         </el-button>
       </el-form-item>
     </el-form>
-
-    <!-- 响应信息 -->
-    <div v-if="response" class="respond-card">
-      <div class="respond-card-container">
-        <div class="header">
-          <img class="header-image" :src="banner1" alt="Header Image" />
-        </div>
-        <div class="body">
-          <div class="message-box">
-            <p class="message-text">老师！这是您的操作结果：</p>
-            <p class="code">{{ response }}</p>
-            <p class="message-text">请检查是否生效</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </el-card>
 </template>
 
@@ -99,9 +84,8 @@ export default {
           return '请选择类型'
       }
     },
-    // 是否显示 sub1 输入项，所有 type 均需提供 sub1
     showSub1() {
-      return this.form.type !== ''
+      return ['AccountLevel', 'Toast'].includes(this.form.type)
     },
     banner1() {
       return banner1
@@ -109,7 +93,7 @@ export default {
   },
   methods: {
     handleTypeChange() {
-      this.form.sub1 = '' // 切换类型时清空 sub1
+      this.form.sub1 = ''
     },
     async handleSetGame() {
       const baseURL = localStorage.getItem('serverAddress')
@@ -118,12 +102,12 @@ export default {
         this.$message.error('请先在首页保存服务器地址')
         return
       }
-      if (!this.form.uid || !this.form.type || !this.form.sub1) {
+      const needsSub1 = ['AccountLevel', 'Toast'].includes(this.form.type)
+      if (!this.form.uid || !this.form.type || (needsSub1 && !this.form.sub1)) {
         this.$message.error('请填写完整信息')
         return
       }
       this.isSubmitting = true
-      this.response = ''
       try {
         let url = `${baseURL}/cdq/api?cmd=set&uid=${this.form.uid}&type=${this.form.type}&sub1=${encodeURIComponent(this.form.sub1)}`
         const headers = {}
@@ -131,15 +115,11 @@ export default {
         const res = await axios.get(url, { headers })
         if (res.data.code === 0) {
           this.$message.success('操作成功')
-          this.response = res.data.msg
         } else {
-          this.$message.error('操作失败')
-          this.response = res.data.msg
+          this.$message.error('操作失败' + (res.data.message ? `: ${res.data.message}` : ''))
         }
       } catch (error) {
-        const errMsg = error.response?.data?.message || error.message
-        this.response = errMsg
-        this.$message.error(this.response)
+        this.$message.error(error.response?.data?.message || error.message)
       } finally {
         this.isSubmitting = false
       }
