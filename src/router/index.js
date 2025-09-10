@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 // import Give from '../views/Give.vue'
 import GiveAll from '../views/GiveAll.vue'
-import GetPlayer from '../views/GetPlayer.vue'
+import Player from '../views/Player.vue'
 import GameMail from '../views/GameMail.vue'
 // import GetEmailCode from '../views/GetEmailCode.vue'
 import IdList from '../views/IdList.vue'
@@ -14,12 +14,13 @@ import ConfigMaker from '../views/ConfigMaker.vue'
 import Mail from '../views/Mail.vue'
 // import MailCode from '@/views/MailCode.vue'
 import Account from '@/views/Account.vue'
+import Command from '@/views/Command.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   // { path: '/give', name: 'Give', component: Give },
   { path: '/GiveAll', name: 'GiveAll', component: GiveAll },
-  { path: '/GetPlayer', name: 'GetPlayer', component: GetPlayer },
+  { path: '/Player', name: 'Player', component: Player },
   { path: '/GameMail', name: 'GameMail', component: GameMail },
   // { path: '/get-email-code', name: 'GetEmailCode', component: GetEmailCode },
   { path: '/IdList', name: 'IdList', component: IdList },
@@ -31,6 +32,7 @@ const routes = [
   { path: '/Mail', name: 'Mail', component: Mail },
   // { path: '/MailCode', name: 'MailCode', component: MailCode },
   { path: '/Account', name: 'Account', component: Account },
+  { path: '/Command', name: 'Command', component: Command },
 ]
 
 const router = createRouter({

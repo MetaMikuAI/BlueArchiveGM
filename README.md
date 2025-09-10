@@ -63,6 +63,10 @@
 
 - 依赖 [BaPS](https://github.com/gucooing/BaPs) 提供的服务
 
+**4. CORS_proxy**
+
+- 你可能需要 `CORS_proxy.py` 来做本 web GM 与 BaPs 之间的代理从，用于绕过 CORS
+
 # **🎇项目环境搭建步骤**
 
 #### **1. 安装 Node.js（推荐 16.x 或以上）**

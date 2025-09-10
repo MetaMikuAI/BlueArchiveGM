@@ -119,7 +119,7 @@ export default {
         })
 
         if (res.data.code === 0) {
-          this.$message.success('物品授予成功！')
+          this.$message.success('物品授予成功！请老师检查游戏邮箱')
         } else {
           this.$message.error('操作失败：' + (res.data.message || '请查看响应获取具体错误'))
         }

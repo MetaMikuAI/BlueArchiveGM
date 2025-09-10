@@ -39,20 +39,20 @@
       </el-form-item>
 
       <!-- 时间设置 -->
-      <el-form-item label="发送时间" prop="send_date">
+      <el-form-item label="发送时间" prop="send_time">
         <el-date-picker
-          v-model="form.send_date"
+          v-model="form.send_time"
           type="datetime"
-          value-format="timestamp"
+          value-format="X"
           placeholder="选择发送时间"
           style="width: 100%"
         ></el-date-picker>
       </el-form-item>
-      <el-form-item label="过期时间" prop="expire_date">
+      <el-form-item label="过期时间" prop="expire_time">
         <el-date-picker
-          v-model="form.expire_date"
+          v-model="form.expire_time"
           type="datetime"
-          value-format="timestamp"
+          value-format="X"
           placeholder="选择过期时间"
           style="width: 100%"
         ></el-date-picker>
@@ -169,8 +169,8 @@ export default {
         uid: '',
         sender: 'BaPsServer',
         comment: '请查收邮件',
-        send_date: 946656000,
-        expire_date: 4070880000,
+        send_time: null,
+        expire_time: null,
         parcel_info_list: [],
       },
       typeOptions: [
@@ -204,11 +204,11 @@ export default {
       rules: {
         sender: [{ required: true, message: '请输入发件人', trigger: 'blur' }],
         comment: [{ required: true, message: '请输入邮件内容', trigger: 'blur' }],
-        send_date: [
-          { type: 'number', required: true, message: '请选择发送时间', trigger: 'change' },
+        send_time: [
+          { type: 'datetime', required: true, message: '请选择发送时间', trigger: 'change' },
         ],
-        expire_date: [
-          { type: 'number', required: true, message: '请选择过期时间', trigger: 'change' },
+        expire_time: [
+          { type: 'datetime', required: true, message: '请选择过期时间', trigger: 'change' },
         ],
         uid: [
           {
@@ -244,8 +244,8 @@ export default {
           recipient: this.form.player_type === 0 ? 'all' : this.form.uid,
           sender: this.form.sender || 'gucooing',
           comment: this.form.comment || '请查收邮件',
-          sendDate: this.form.send_date || 946656000,
-          expireDate: this.form.expire_date || 4070880000,
+          sendTime: this.form.send_time || 946656000,
+          expireTime: this.form.expire_time || 4070880000,
           parcelInfoList: JSON.stringify(
             this.form.parcel_info_list.map((item) => ({
               type: item.type,

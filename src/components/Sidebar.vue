@@ -21,7 +21,7 @@
         <el-menu-item index="/GiveAll" class="menu-item">
           <i class="bi bi-gift"></i> 给予全部物品
         </el-menu-item>
-        <el-menu-item index="/GetPlayer" class="menu-item">
+        <el-menu-item index="/Player" class="menu-item">
           <i class="bi bi-person"></i> 获取老师信息
         </el-menu-item>
         <el-menu-item index="/GameMail" class="menu-item">
@@ -39,9 +39,9 @@
         <!-- <el-menu-item index="/MailCode" class="menu-item">
           <i class="bi bi-123"></i> 验证码设置
         </el-menu-item> -->
-        <!-- <el-menu-item index="/command" class="menu-item">
+        <el-menu-item index="/Command" class="menu-item">
           <i class="bi bi-terminal"></i> 命令生成器
-        </el-menu-item> -->
+        </el-menu-item>
         <el-menu-item index="/ConfigMaker" class="menu-item">
           <i class="bi bi-sliders2"></i> 配置生成器
         </el-menu-item>
