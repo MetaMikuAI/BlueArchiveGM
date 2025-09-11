@@ -209,7 +209,7 @@ export default {
           timeout: 5000,
         })
         if (response.status === 200 && response.data.code === 0) {
-          const pd = JSON.parse(response.data.msg)
+          const pd = JSON.parse(response.data.data)
           this.applyDataUpdate(pd)
           this.serverError = ''
           if (!silent) this.$message.success('状态更新成功')
@@ -236,7 +236,7 @@ export default {
           timeout: 5000,
         })
         if (response.status === 200 && response.data.code === 0) {
-          const pd = JSON.parse(response.data.msg)
+          const pd = JSON.parse(response.data.data)
           this.applyDataUpdate(pd)
           this.serverError = ''
           this.autoUpdateErrorShown = false

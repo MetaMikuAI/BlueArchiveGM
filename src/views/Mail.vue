@@ -107,7 +107,7 @@ export default {
       this.isSubmitting = true
       try {
         const params = {
-          cmd: 'gameMail', // 对应Go端的命令名
+          cmd: 'mail', 
           header: this.form.header,
           body: this.form.body,
           usernames: this.form.usernames.join(';'),
@@ -120,9 +120,9 @@ export default {
         if (res.data.code === 0) {
           this.$message.success('发送成功')
         } else {
-          this.$message.error('发送失败')
+          this.$message.error('操作失败' + (res.data.message ? `: ${res.data.message}` : ''))
         }
-        this.response = res.data.msg
+        this.response = res.data.message
       } catch (err) {
         const msg = err.response?.data?.message || err.message
         this.$message.error(msg)

@@ -46,8 +46,9 @@
         </div>
         <div class="body">
           <div class="message-box">
-            <p class="message-text">操作结果：</p>
+            <p class="message-text">老师！这是您的操作结果：</p>
             <p class="code">{{ response }}</p>
+            <p class="message-text">请检查是否生效</p>
           </div>
         </div>
       </div>
@@ -113,9 +114,9 @@ export default {
         if (res.data.code === 0) {
           this.$message.success('操作成功')
         } else {
-          this.$message.error('操作失败')
+          this.$message.error('操作失败' + (res.data.message ? `：${res.data.message}` : ''))
         }
-        this.response = res.data.msg
+        this.response = res.data.data
       } catch (err) {
         const msg = err.response?.data?.message || err.message
         this.$message.error(msg)
@@ -202,47 +203,59 @@ export default {
   box-shadow: 0 6px 16px -4px rgba(79, 172, 254, 0.4);
 }
 .respond-card {
-  margin-top: 24px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  color: #666;
+  font-size: 14px;
 }
+
 .respond-card-container {
-  width: 100%;
-  max-width: 500px;
+  width: 500px;
+  margin: 0 auto;
   border: 1px solid #ee9ea8;
   box-shadow: 0 0 20px #ccc;
   border-radius: 5px;
   background: #fff;
 }
+
 .header-image {
   width: 100%;
   border-radius: 5px 5px 0 0;
 }
+
 .body {
   padding: 30px 20px;
 }
+
 .message-box {
   text-align: center;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
+
 .message-text {
   font-size: 16px;
   color: #333;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
+
 .code {
   font-size: 18px;
   font-weight: bold;
   color: #ee9ea8;
-  background: #fff;
+  background: white;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+  max-width: 100%;
 }
 @keyframes fadeIn {
   from {
